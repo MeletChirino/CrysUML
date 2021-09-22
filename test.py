@@ -1,4 +1,4 @@
-from main import *
+from crysuml.main import *
 
 def main():
 
@@ -12,10 +12,6 @@ def main():
             type = "database",
             note = "This s the amazon server",
             )
-    links = [
-            {"actor": client, "type": "standard",},
-            {"actor": database, "type": "standard",}
-            ]
     use_me = UseCase(
             name = "Read",
             description = "Here he reads",
