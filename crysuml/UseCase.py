@@ -21,6 +21,10 @@ class Case():
     def __str__(self):
         return F"USE CASE = {self.name}"
 
+class Package():
+    def __init__(self, *args):
+        self.list = args
+
 class Diagram():
     def __init__(self, **kwargs):
         self.cases = kwargs['cases']
