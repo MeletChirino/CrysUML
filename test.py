@@ -1,39 +1,41 @@
-from crysuml.main import *
+from crysuml.UseCase import *
 
 def main():
+    client = Actor(name = 'client',)
+    database = Actor(name='Database', type='database')
+    read = Case(
+            name='Read',
+            note="jas;ldkfjh;ladksj",
+            links=[
+                {"actor": client, "type": "simple",},
+                {"actor": database, "type": "simple",},
+                ]
+            )
+    write = Case(
+            name='Write',
+            note="jas;ldkfjh;ladksj",
+            links=[
+                {"actor": client, "type": "simple",},
+                {"case": read, "type": "include",},
+                ]
+            )
+    delete = Case(
+            name = "Delete",
+            links = [
+                {"actor": database, "type": "simple"},
+                {"actor": client, "type": "simple"},
+                {"case": read, "type": "include"},
+                {"case": write, "type": "extends"},
+                ]
+            )
 
-    client = Actor(
-            type = "human",
-            name = "Client",
-            note = "This client is an asswhole",
+    diagram = Diagram(
+            cases = [read, write, delete],
+            actors = [client, database]
             )
-    database = Actor(
-            name = "database",
-            type = "database",
-            note = "This s the amazon server",
-            )
-    use_me = UseCase(
-            name = "Read",
-            description = "Here he reads",
-            note = "exemple 1",
-            link =[
-                {"actor": client, "type": "standard",},
-                {"actor": database, "type": "standard",}
-                ]
-            )
-    use_me_now = UseCase(
-            name = "Write",
-            description = "Here he writes",
-            note = "exemple 1",
-            link = [
-                {"actor": client, "type": "standard",},
-                {"use_case": use_me, "type": "include",}
-                ]
-            )
-    use_case = UseCaseDiagram(
-            use_case = [use_me, use_me_now],
-            notes_on = True
-            )
-    use_case.create()
+    diagram.create()
+    return 0
 
 main()
+
+
