@@ -69,9 +69,11 @@ def link_type(string):
             }
     return switcher[string]
 
-def check_kwargs(string, kwargs):
+def check_kwargs(string, kwargs, **default):
     if string in kwargs and kwargs[string]:
         return kwargs[string]
+    elif 'default' in default and default['default']:
+        return default['default']
     else:
         return ""
 
