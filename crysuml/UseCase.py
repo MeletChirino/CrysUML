@@ -2,7 +2,9 @@
 class Actor():
     def __init__(self, **kwargs):
         self.name = kwargs['name']
-        self.type = check_kwargs('type', kwargs)
+        if 'type' in kwargs and kwargs['type']: self.type = kwargs['type']
+        else: self.type = "actor"
+
         self.note = check_kwargs('note', kwargs)
 
     def __str__(self):
@@ -40,7 +42,7 @@ class Diagram():
         f = open("diagrams/use_case_diagram.txt", "a")
         print("Creating diagram")
         for actor in self.actors:
-            f.write(F"actor {actor.name}\n")
+            f.write(F"{actor.type} {actor.name}\n")
 
         f.write("package System {\n")
         for case in self.cases:
