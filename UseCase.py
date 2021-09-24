@@ -51,7 +51,18 @@ map_house = Case(
             link(exigence='map')
             ]
         )
-cases_list = [select_use, move, eat, map_house]
+new_use = Case(
+        name = 'New Use Case',
+        description = 'New Use case to test matrix',
+        links = [
+            link(exigence='configure'),
+            link(exigence='move'),
+            link(exigence='map'),
+            link(actor=robot, type='simple'),
+            link(case=select_use, type='extends')
+            ]
+        )
+cases_list = [new_use, configure, select_use, move, eat, map_house]
 
 use_case_diagram = Diagram(
         cases = cases_list,
