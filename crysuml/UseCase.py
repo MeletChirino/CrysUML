@@ -1,4 +1,6 @@
 """ main package from crysuml"""
+import plantuml
+
 class Actor():
     def __init__(self, **kwargs):
         self.name = kwargs['name']
@@ -36,10 +38,11 @@ class Diagram():
 
     def create(self):
         #create use case diagram with plantuml
-        f = open("diagrams/use_case_diagram.txt", "w")
+        file_name = "diagrams/use_case_diagram.txt"
+        f = open(file_name, "w")
         f.write("@startuml\n")
         f.close()
-        f = open("diagrams/use_case_diagram.txt", "a")
+        f = open(file_name, "a")
         print("Creating diagram")
         for actor in self.actors:
             f.write(F"{actor.type} {actor.name}\n")
@@ -59,7 +62,14 @@ class Diagram():
                 f.write(F"{start} {link_[0]} {end} {link_[1]}\n")
         f.write("@enduml")
         f.close()
-        return case
+        try:
+            diagram = plantuml.PlantUML(
+                    url='http://www.plantuml.com/plantuml/img/',
+                    )
+            diagram.processes_file(file_name)
+            return diagram
+        except Exception as e:
+            print(e)
 
 def link_type(string):
     switcher = {
