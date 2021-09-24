@@ -57,7 +57,7 @@ class Diagram():
         f.write("}\n")
         for case in self.cases:
             for link in case.links:
-                if not(link.get('exigence')):
+                if (link.get('actor') or link.get('case')):
                     start = get_case_u(self.cases, case.name)
                     link_ = link_type(link['type'])
                     if link.get('actor'):
