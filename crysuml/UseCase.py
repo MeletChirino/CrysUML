@@ -44,22 +44,30 @@ class Diagram():
         f.close()
         f = open(file_name, "a")
         print("Creating diagram")
+
         for actor in self.actors:
             f.write(F"{actor.type} {actor.name}\n")
 
+        i = 0
         f.write("package System {\n")
         for case in self.cases:
-            f.write(F"usecase \"{case.name}\"\n")
+            f.write(F"usecase \"{case.name}\" as u{i}\n")
+            i += 1
+
         f.write("}\n")
         for case in self.cases:
             for link in case.links:
-                start = case.name
-                link_ = link_type(link['type'])
-                if link.get('actor'):
-                    end = link['actor'].name
-                else:
-                    end = link['case'].name
-                f.write(F"{start} {link_[0]} {end} {link_[1]}\n")
+                if not(link.get('exigence')):
+                    start = get_case_u(self.cases, case.name)
+                    link_ = link_type(link['type'])
+                    if link.get('actor'):
+                        end = link['actor'].name
+                    else:
+                        end = get_case_u(
+                                self.cases,
+                                link['case'].name
+                                )
+                    f.write(F"{start} {link_[0]} {end} {link_[1]}\n")
         f.write("@enduml")
         f.close()
         try:
@@ -70,6 +78,14 @@ class Diagram():
             return diagram
         except Exception as e:
             print(e)
+
+def get_case_u(cases, case_name):
+    i=0
+    for case in cases:
+        if case.name == case_name:
+            return F"u{i}"
+        i += 1
+    pass
 
 def link_type(string):
     switcher = {
@@ -87,3 +103,5 @@ def check_kwargs(string, kwargs, **default):
     else:
         return ""
 
+def link(**kwargs):
+    return kwargs
