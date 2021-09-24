@@ -46,7 +46,7 @@ map_house = Case(
         name = 'Map all the house',
         description = 'Robot must save a map of the whole place',
         links = [
-            link(case=move, type='extends'),
+            link(case=move, type='include'),
             link(actor=database, type='simple'),
             link(exigence='map')
             ]
@@ -62,7 +62,7 @@ new_use = Case(
             link(case=select_use, type='extends')
             ]
         )
-cases_list = [new_use, configure, select_use, move, eat, map_house]
+cases_list = [configure, select_use, move, eat, map_house, new_use]
 
 use_case_diagram = Diagram(
         cases = cases_list,
