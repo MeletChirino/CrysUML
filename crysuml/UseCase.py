@@ -1,5 +1,5 @@
 """ main package from crysuml"""
-import plantuml
+from .functions import draw_plantuml, link_type, check_kwargs, link
 
 class Actor():
     def __init__(self, **kwargs):
@@ -70,14 +70,7 @@ class Diagram():
                     f.write(F"{start} {link_[0]} {end} {link_[1]}\n")
         f.write("@enduml")
         f.close()
-        try:
-            diagram = plantuml.PlantUML(
-                    url='http://www.plantuml.com/plantuml/img/',
-                    )
-            diagram.processes_file(file_name)
-            return diagram
-        except Exception as e:
-            print(e)
+        draw_plantuml(file_name)
 
 def get_case_u(cases, case_name):
     i=0
@@ -87,21 +80,3 @@ def get_case_u(cases, case_name):
         i += 1
     pass
 
-def link_type(string):
-    switcher = {
-            "simple": ["--", ""],
-            "include": [".>", ": include"],
-            "extends": ["<.", ": extends"],
-            }
-    return switcher[string]
-
-def check_kwargs(string, kwargs, **default):
-    if string in kwargs and kwargs[string]:
-        return kwargs[string]
-    elif 'default' in default and default['default']:
-        return default['default']
-    else:
-        return ""
-
-def link(**kwargs):
-    return kwargs
