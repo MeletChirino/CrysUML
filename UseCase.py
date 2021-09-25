@@ -1,8 +1,11 @@
 from crysuml.UseCase import *
+from crysuml.functions import get_list, link
+
 
 operator = Actor(name = 'operator',)
 database = Actor(name='Database', type='database')
 robot = Actor(name="Robot", type='component')
+robot_2 = Actor(name="Robot", type='component')
 configure = Case(
         name = 'Configure',
         links = [
@@ -62,9 +65,11 @@ new_use = Case(
             link(case=select_use, type='extends')
             ]
         )
-cases_list = [configure, select_use, move, eat, map_house, new_use]
+cases_list = get_list(Case)
+actors_list = get_list(Actor)
 
 use_case_diagram = Diagram(
         cases = cases_list,
-        actors = [operator, database, robot]
+        actors = actors_list
         )
+

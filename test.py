@@ -1,3 +1,4 @@
+import gc
 from crysuml.UseCase import *
 
 def main():
@@ -29,12 +30,22 @@ def main():
                 {"case": write, "type": "extends"},
                 ]
             )
+    another_case = Case(
+            name = 'another_case',
+            links = [
+                2, 4
+                ]
+            )
 
     diagram = Diagram(
             cases = [read, write, delete],
             actors = [client, database, cloud]
             )
     diagram.create()
+    trash = gc.get_objects()
+    for obj in trash:
+        if isinstance(obj, Case):
+            print(obj)
     return 0
 
 main()
