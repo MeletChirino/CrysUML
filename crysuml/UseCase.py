@@ -31,6 +31,9 @@ class Package():
 
 class Diagram():
     def __init__(self, **kwargs):
+        self.name = ""
+        if kwargs.get('name'):
+            self.name = kwargs['name']
         self.cases = kwargs['cases']
         self.actors = kwargs['actors']
         self.system_name = "System"
