@@ -1,4 +1,4 @@
-from UseCase import *
+from usecase import *
 from exigences import *
 from crysuml.matrix import matrix
 
