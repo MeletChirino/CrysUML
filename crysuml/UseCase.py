@@ -37,6 +37,8 @@ class Diagram():
         self.cases = kwargs['cases']
         self.actors = kwargs['actors']
         self.system_name = "System"
+        if kwargs.get("system_name"):
+            self.system_name = kwargs['system_name']
         #packages
 
     def create(self):
@@ -46,13 +48,13 @@ class Diagram():
         f.write("@startuml\nleft to right direction\n")
         f.close()
         f = open(file_name, "a")
-        print("Creating diagram")
+        print("Creating Use Case diagram")
 
         for actor in self.actors:
             f.write(F"{actor.type} {actor.name}\n")
 
         i = 0
-        f.write("package System {\n")
+        f.write(F"package \"{self.system_name}\" {{ \n")
         for case in self.cases:
             f.write(F"usecase \"{case.name}\" as u{i}\n")
             i += 1
