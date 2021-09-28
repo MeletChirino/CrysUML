@@ -51,7 +51,7 @@ class Diagram():
         print("Creating Use Case diagram")
 
         for actor in self.actors:
-            f.write(F"{actor.type} {actor.name}\n")
+            f.write(F"{actor.type} \"{actor.name}\"\n")
 
         i = 0
         f.write(F"package \"{self.system_name}\" {{ \n")
