@@ -2,68 +2,45 @@ from crysuml.UseCase import Case
 from crysuml.functions import link
 from actors import *
 
-configure = Case(
-        name = 'Configure',
+commands = Case(
+        name = 'Send commands',
         links = [
             link(actor=operator, type='simple'),
-            link(exigence="configure"),
-            link(actor=robot, type='simple'),
+            link(exigence="messages"),
             ]
         )
-another_use = Case(
-        name = 'Test Use Case',
+single_command = Case(
+        name = "Send single command",
         links = [
-            link(actor=robot, type='simple'),
+            link(case=commands, type='extends'),
+            link(actor=raspi, type='simple'),
             ]
         )
-select_use = Case(
-        name = 'Select Use',
-        description = '''
-        User can select mode that robot will behave
-        ''',
+many_command = Case(
+        name = "Send group of commands",
         links = [
-            link(actor=operator, type='simple')
+            link(case=commands, type='extends'),
+            link(actor=raspi, type='simple'),
             ]
         )
-move = Case(
-        name = 'Move Around the house',
-        description = '''
-        Robot will move around the hous avoiding obstacles
-        ''',
+receive_data = Case(
+        name = 'Receive Data',
         links = [
-            link(exigence='move'),
-            link(case=select_use, type='extends'),
-            link(actor=robot, type='simple'),
+            link(actor=raspi, type='simple'),
             ]
         )
-eat = Case(
-        name = 'Eat some food',
-        description = '''
-        The Robot must eat only the amount of food given
-        ''',
+rt_data = Case(
+        name = 'Save data',
         links = [
-            link(exigence='eat'),
-            link(case=select_use, type='extends'),
-            link(actor=robot, type='simple'),
+            link(case=receive_data, type='extends'),
             ]
         )
-map_house = Case(
-        name = 'Map all the house',
-        description = 'Robot must save a map of the whole place',
+rt_data = Case(
+        name = 'Show real-time data',
         links = [
-            link(case=move, type='include'),
-            link(actor=database, type='simple'),
-            link(exigence='map')
-            ]
-        )
-new_use = Case(
-        name = 'New Use Case',
-        description = 'New Use case to test matrix',
-        links = [
-            link(exigence='configure'),
-            link(exigence='move'),
-            link(exigence='map'),
-            link(actor=robot, type='simple'),
-            link(case=select_use, type='extends')
+            link(actor=operator, type='simple'),
+            link(actor=raspi, type='simple'),
+            link(exigence="real_time"),
+            link(case=receive_data, type='extends'),
             ]
         )
