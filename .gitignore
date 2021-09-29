@@ -1,10 +1,12 @@
 **/__pycache__/**
 
 **.swp
+
 **.png
+**.jpg
+
+**.md
 **.txt
 **.csv
-
-**.jpg
 
 venv/*

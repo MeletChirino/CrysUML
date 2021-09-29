@@ -22,3 +22,5 @@ exigences_list = [
             description = 'L\'interface doit montrer l\'information acquise par le robot'
             ),
         ]
+
+#generate md file
