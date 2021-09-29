@@ -38,5 +38,59 @@ def check_kwargs(string, kwargs, **default):
     else:
         return ""
 
+#functions for writing files
+def create_file(file_name):
+    f = open(file_name, 'w')
+    f.write("@startuml\n")
+    f.close()
+
+def write_file(**kwargs):
+    f = open(kwargs['file_name'], 'a')
+    f.write(kwargs['string'])
+    f.close()
+
+def end_file(file_name):
+    f = open(file_name, 'a')
+    f.write("\n@enduml")
+    f.close()
+
+
+#functions for linking and write properties to diagrams and objects
 def link(**kwargs):
+    return kwargs
+
+def message(**kwargs):
+    kwargs['type'] = 'message'
+    return kwargs
+
+def reponse(**kwargs):
+    kwargs['type'] = 'reponse'
+    return kwargs
+
+def activate(**kwargs):
+    kwargs['type'] = 'activate'
+    return kwargs
+
+def deactivate(**kwargs):
+    kwargs['type'] = 'deactivate'
+    return kwargs
+
+def loop(**kwargs):
+    kwargs['type'] = 'loop'
+    return kwargs
+
+def alt(**kwargs):
+    kwargs['type'] = 'alt'
+    return kwargs
+
+def end(**kwargs):
+    kwargs['type'] = 'end'
+    return kwargs
+
+def ref(**kwargs):
+    kwargs['type'] = 'ref'
+    return kwargs
+
+def divider(**kwargs):
+    kwargs['type'] = 'divider'
     return kwargs

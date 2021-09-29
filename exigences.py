@@ -2,19 +2,23 @@ from crysuml.exigences import exigence
 
 exigences_list = [
         exigence(
-            name = "configure",
-            description = "Operator can configure the robot in less than 5 minutes"
+            name = "wireless",
+            description = "L'interface devra se comuniquer avec le robot par une signal sans-fil."
             ),
         exigence(
-            name = "move",
-            description = "Robot must move in any direction"
+            name = "code_language",
+            description = "L'interface devra etre codee en C ou C++."
             ),
         exigence(
-            name = "eat",
-            description = "Robot must not eat all my food"
+            name = "messages",
+            description = "L'interface devra envoyer des messages operationels vers le robot."
             ),
         exigence(
-            name = 'map',
-            description = 'Robot must create a map of my place'
-            )
+            name = "real_time",
+            description = 'L\'interface doit montrer l\'image en temps reel du robot'
+            ),
+        exigence(
+            name = "final_report",
+            description = 'L\'interface doit montrer l\'information acquise par le robot'
+            ),
         ]

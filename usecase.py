@@ -11,7 +11,7 @@ cases_list = get_list(Case)
 actors_list = get_list(Actor)
 
 use_case_diagram = Diagram(
-        system_name = "Robot Planteur",
+        system_name = "Interface Graphique",
         cases = cases_list,
         actors = actors_list
         )
