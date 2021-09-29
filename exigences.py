@@ -19,6 +19,6 @@ exigences_list = [
             ),
         exigence(
             name = "final_report",
-            description = 'L\'interface doit montrer le compte rendu du robot de l\'habitation'
+            description = 'L\'interface doit montrer l\'information acquise par le robot'
             ),
         ]
