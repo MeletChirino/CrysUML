@@ -2,6 +2,36 @@
 import gc
 import plantuml
 
+def create_md(**kwargs):
+    ''' This function writes a mark down file
+    kwargs:
+        - name
+        - description
+        - instance_list
+        - footer
+    '''
+    file_name = F"markdown/{kwargs['name']}.md"
+    f = open(file_name, 'w')
+    f.write(F"{kwargs['name']} markdown File!\n")
+    if kwargs.get('description'):
+        f.write(F"{kwargs['description']}\n\n")
+    for instance in kwargs['instance_list']:
+        try:
+            f.write(F'-{instance["name"]}: {instance["description"]}\n')
+        except:
+            print("Instance list were a dict list")
+        try:
+            f.write(F'-{instance.name}: {instance.description}\n')
+        except:
+            print("Instance list were a instance list")
+
+    if kwargs.get('footer'):
+        f.write(kwargs['footer'])
+
+    f.close()
+
+
+
 def draw_plantuml(file_name):
     try:
         diagram = plantuml.PlantUML(
