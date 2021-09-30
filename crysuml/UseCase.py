@@ -3,10 +3,16 @@ from .functions import draw_plantuml, link_type, check_kwargs, link
 
 class Actor():
     def __init__(self, **kwargs):
+        """ keywords:
+            name, type, description, note
+        """
         self.name = kwargs['name']
         if 'type' in kwargs and kwargs['type']: self.type = kwargs['type']
         else: self.type = "actor"
 
+        self.description = ""
+        if kwargs.get('description'):
+            self.description = kwargs['description']
         self.note = check_kwargs('note', kwargs)
 
     def __str__(self):

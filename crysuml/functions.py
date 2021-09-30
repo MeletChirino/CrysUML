@@ -14,19 +14,24 @@ def create_md(**kwargs):
     f = open(file_name, 'w')
     f.write(F"{kwargs['name']} markdown File!\n")
     if kwargs.get('description'):
-        f.write(F"{kwargs['description']}\n\n")
+        f.write(F"\n{kwargs['description']}\n\n")
     for instance in kwargs['instance_list']:
         try:
-            f.write(F'-{instance["name"]}: {instance["description"]}\n')
+            f.write(F'\n- {instance["name"]}')
+            if not(instance['description'] == ""):
+                f.write(F': {instance["description"]}')
         except:
             print("Instance list were a dict list")
+
         try:
-            f.write(F'-{instance.name}: {instance.description}\n')
+            f.write(F'\n- {instance.name}')
+            if not(instance.description == ""):
+                f.write(F': {instance.description}')
         except:
             print("Instance list were a instance list")
 
     if kwargs.get('footer'):
-        f.write(kwargs['footer'])
+        f.write(F"\n\n{kwargs['footer']}")
 
     f.close()
 
