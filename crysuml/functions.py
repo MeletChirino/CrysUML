@@ -42,8 +42,6 @@ def create_md(**kwargs):
 
     f.close()
 
-
-
 def draw_plantuml(file_name):
     try:
         diagram = plantuml.PlantUML(
@@ -53,7 +51,6 @@ def draw_plantuml(file_name):
         return diagram
     except Exception as e:
         print(e)
-
 
 def get_list(class_name):
     trash = gc.get_objects()
@@ -81,7 +78,7 @@ def check_kwargs(string, kwargs, **default):
         return ""
 
 #functions for writing files
-def create_file(file_name):
+def create_uml_file(file_name):
     f = open(file_name, 'w')
     f.write("@startuml\n")
     f.close()
@@ -95,6 +92,47 @@ def end_file(file_name):
     f = open(file_name, 'a')
     f.write("\n@enduml")
     f.close()
+
+#functions for exigence file
+def class_diagram(dict_list, **kwargs):
+    name = kwargs['name']
+    file_name = F"diagrams/{kwargs['name']}_class.txt"
+
+    #write clases
+    create_uml_file(file_name)
+    for element in dict_list:
+        write_file(
+                file_name = file_name,
+                string = F"""
+                    class {element['name']} {{
+                    .. name ..
+                    {element['verbose_name']}
+                    .. description ..
+                    {element['description']}
+                    }}\n
+                    """
+                )
+    # now we write the links
+    for element in dict_list:
+        if element.get("links"):
+            for link in element['links']:
+                write_file(
+                        file_name = file_name,
+                        string = F'{element["name"]} {link_element(link, "exigence")}\n'
+                        )
+    end_file(file_name)
+    draw_plantuml(file_name)
+
+
+def link_element(link, kw):
+    if link['type'] == 'simple':
+        return F"-- {link[kw]}"
+    elif link['type'] == 'extension':
+        return F"--|> {link[kw]}"
+    elif link['type'] == 'composition':
+        return F"*-- {link[kw]}"
+    elif link['type'] == 'agregation':
+        return F"--o {link[kw]}"
 
 
 #functions for linking and write properties to diagrams and objects
