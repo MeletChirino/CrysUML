@@ -10,7 +10,7 @@ class Sequence():
 
     def create(self):
         print("Creating Sequance diagram")
-        create_file(self.file_name)
+        create_uml_file(self.file_name)
         for etape in self.sequence:
             write_file(
                     file_name = self.file_name,
