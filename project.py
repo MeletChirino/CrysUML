@@ -4,7 +4,6 @@ from crysuml.matrix import matrix
 from crysuml.functions import create_md
 
 def main():
-    #use_case_diagram.create()
     create_md(
             name = "Exigences",
             description = "This file shows exigences",
@@ -23,7 +22,9 @@ def main():
             instance_list = actors_list,
             footer = "Those actors are going to do the best for our project"
             )
-    #matrix(cases_list, exigences_list, 'exigence')
+    use_case_diagram.create()
+    class_diagram(exigences_list, name='exigences')
+    matrix(cases_list, exigences_list, 'exigence')
     return 0
 
 main()
