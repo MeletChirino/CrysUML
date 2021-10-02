@@ -17,14 +17,21 @@ def create_md(**kwargs):
         f.write(F"\n{kwargs['description']}\n\n")
     for instance in kwargs['instance_list']:
         try:
-            f.write(F'\n- {instance["name"]}')
+            if instance.get("verbose_name"):
+                f.write(F'\n- {instance["verbose_name"]}')
+            else:
+                f.write(F'\n- {instance["name"]}')
             if not(instance['description'] == ""):
                 f.write(F': {instance["description"]}')
         except:
             print("Instance list were a dict list")
 
         try:
-            f.write(F'\n- {instance.name}')
+            if hasattr(instance, "verbose_name"):
+                f.write(F'\n- {instance.verbose_name}')
+            else:
+                f.write(F'\n- {instance.name}')
+
             if not(instance.description == ""):
                 f.write(F': {instance.description}')
         except:

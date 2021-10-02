@@ -10,6 +10,9 @@ class Actor():
         if 'type' in kwargs and kwargs['type']: self.type = kwargs['type']
         else: self.type = "actor"
 
+        if kwargs.get('verbose_name'):
+            self.verbose_name = kwargs['verbose_name']
+
         self.description = ""
         if kwargs.get('description'):
             self.description = kwargs['description']
