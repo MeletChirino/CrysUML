@@ -8,7 +8,8 @@ def main():
             name = "Exigences",
             description = "This file shows exigences",
             instance_list = exigences_list,
-            footer = "We all agreed 28/sept/2021"
+            diagram_name = "exigences",
+            footer = "We all agreed 28/sept/2021",
             )
     create_md(
             name = "Cases",
@@ -23,7 +24,6 @@ def main():
             footer = "Those actors are going to do the best for our project"
             )
     use_case_diagram.create()
-    class_diagram(exigences_list, name='exigences')
     matrix(cases_list, exigences_list, 'exigence')
     return 0
 
