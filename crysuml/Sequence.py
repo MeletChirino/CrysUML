@@ -3,7 +3,7 @@ from .functions import *
 class Sequence():
     def __init__(self, **kwargs):
         self.name = kwargs['name']
-        self.file_name = F"diagrams/{self.name}_sequence.txt"
+        self.file_name = F"docs/diagrams/{self.name}_sequence.txt"
         self.links = kwargs['links']
         self.actors = kwargs['actors']
         self.sequence = kwargs['sequence_list']

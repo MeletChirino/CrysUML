@@ -10,9 +10,10 @@ def create_md(**kwargs):
         - instance_list
         - footer
     '''
-    file_name = F"markdown/{kwargs['name']}.md"
+    file_name = F"docs/{kwargs['name']}.md"
     f = open(file_name, 'w')
     f.write(F"{kwargs['name']} markdown File!\n")
+
     if kwargs.get('description'):
         f.write(F"\n{kwargs['description']}\n\n")
     for instance in kwargs['instance_list']:
@@ -24,7 +25,8 @@ def create_md(**kwargs):
             if not(instance['description'] == ""):
                 f.write(F': {instance["description"]}')
         except:
-            print("Instance list were a dict list")
+            #print("Instance list were a dict list")
+            pass
 
         try:
             if hasattr(instance, "verbose_name"):
@@ -35,7 +37,8 @@ def create_md(**kwargs):
             if not(instance.description == ""):
                 f.write(F': {instance.description}')
         except:
-            print("Instance list were a instance list")
+            #print("Instance list were a instance list")
+            pass
 
     if kwargs.get('footer'):
         f.write(F"\n\n{kwargs['footer']}")
@@ -96,7 +99,7 @@ def end_file(file_name):
 #functions for exigence file
 def class_diagram(dict_list, **kwargs):
     name = kwargs['name']
-    file_name = F"diagrams/{kwargs['name']}_class.txt"
+    file_name = F"docs/diagrams/{kwargs['name']}_class.txt"
 
     #write clases
     create_uml_file(file_name)
