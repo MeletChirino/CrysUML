@@ -40,6 +40,14 @@ def create_md(**kwargs):
             #print("Instance list were a instance list")
             pass
 
+    if kwargs.get('diagram_name'):
+        diagram_file = class_diagram(
+                kwargs['instance_list'],
+                name = kwargs['diagram_name']
+                )
+        f.write(F"\n\n![alt text]({diagram_file})\n")
+
+
     if kwargs.get('footer'):
         f.write(F"\n\n{kwargs['footer']}")
 
@@ -125,6 +133,7 @@ def class_diagram(dict_list, **kwargs):
                         )
     end_file(file_name)
     draw_plantuml(file_name)
+    return F"diagrams/{kwargs['name']}_class.png"
 
 
 def link_element(link, kw):
