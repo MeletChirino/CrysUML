@@ -1,7 +1,10 @@
 from usecase import *
 from exigences import *
+from sequences import *
 from crysuml.matrix import matrix
 from crysuml.functions import create_md
+from crysuml.logic_architecture import *
+from crysuml.Sequence import Sequence
 
 def main():
     create_md(
@@ -25,6 +28,9 @@ def main():
             )
     use_case_diagram.create()
     matrix(cases_list, exigences_list, 'exigence')
+    sequences_list = get_list(Sequence)
+    logic_architecture_diagram(sequences_list)
+
     return 0
 
 main()
