@@ -10,7 +10,7 @@ def write_csv(lines, rows, matrix, file_name):
     f = open(file_name, 'w')
     f.write(" ")
     for row in rows:
-        f.write(F", {row['description']}")
+        f.write(F", {row['verbose_name']}")
     f.write("\n")
     f.close()
     f = open(file_name, 'a')
