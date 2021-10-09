@@ -2,6 +2,36 @@ from .functions import *
 
 class Sequence():
     def __init__(self, **kwargs):
+        """
+        Those are options of sequence diagram
+message(
+    starts=starting_actor[Actor],
+    ends=endind_actor[Actor],
+    message="message string"[string],
+    categorie="Logical Categorie"[string]
+    )
+
+def reponse(
+    starts=starting_actor[Actor],
+    ends=endind_actor[Actor],
+    message="message string"[string],
+    categorie="Logical Categorie"[string]
+    )
+
+def activate(actor=activated_actor[Actor])
+
+def deactivate(actor=activated_actor[Actor])
+
+def loop(condition="loop condition"[string])
+def alt(condition="loop condition"[string])
+def elsif(condition="loop condition"[string])
+
+def end():
+
+def ref(ref_sequence=sequence_diagram[Sequence], over=[actor1, actor2, ...][Actor]):
+
+def divider():
+        """
         self.name = kwargs['name']
         self.file_name = F"docs/diagrams/{self.name}_sequence.txt"
         self.links = kwargs['links']
