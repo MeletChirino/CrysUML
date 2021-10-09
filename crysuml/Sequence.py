@@ -39,5 +39,7 @@ def seq_to_string(message):
         final_string = F"end"
     elif message_type == 'divider':
         final_string = F"==== {message['title']} ===="
+    elif message_type == 'ref':
+        final_string = F"ref :{message['ref_sequence']}"
     return F"{final_string}\n"
 

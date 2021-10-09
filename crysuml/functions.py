@@ -175,6 +175,10 @@ def alt(**kwargs):
     kwargs['type'] = 'alt'
     return kwargs
 
+def elsif(**kwargs):
+    kwargs['type'] = 'else'
+    return kwargs
+
 def end(**kwargs):
     kwargs['type'] = 'end'
     return kwargs
