@@ -12,17 +12,17 @@ exigences_list = [
         exigence(
             name = "receive_info",
             verbose_name = "Recevoir information",
-            description = "L'interface devra recevoir les donnes qui envoie le robot",
+            description = "L'interface devra recevoir les donnes de video ou 3D qui\nenvoie le robot",
             ),
         exigence(
             name = "messages",
             verbose_name = "Commander le robot",
-            description = "L'interface devra commander le robot a distance."
+            description = "L'interface devra commander les fonctions\n du robot a distance :\n-Faire un Test de connection\n-Scanner toute l'habitation\n-Commander un mouvement d'un point A vers un point B."
             ),
         exigence(
             name = "wireless",
             verbose_name = "Comunication sans fils",
-            description = "L'interface devra se comuniquer avec le robot par une signal sans-fil.",
+            description = "L'interface devra se comuniquer avec le robot par une signal\nsans-fil.",
             links = [
                 link(exigence="messages", type="extension"),
                 link(exigence="receive_info", type="extension"),
@@ -31,7 +31,7 @@ exigences_list = [
         exigence(
             name = "real_time",
             verbose_name = "Temps reel",
-            description = 'L\'interface doit montrer l\'image en temps reel du robot',
+            description = 'L\'interface doit montrer la signal de video en temps reel\ndu robot si l\'operateur le veux',
             links = [
                 link(exigence="receive_info", type="extension"),
                 ]
@@ -39,7 +39,7 @@ exigences_list = [
         exigence(
             name = "final_report",
             verbose_name = "Montrer l'info",
-            description = 'L\'interface doit montrer l\'information acquise par le robot',
+            description = 'L\'interface doit montrer l\'information acquise par le robot\n en forme de video, map 3D, ou en forme d\'un petit rapport avec\n les informatinos les plus pertinents',
             links = [
                 link(exigence="receive_info", type="extension"),
                 ]
