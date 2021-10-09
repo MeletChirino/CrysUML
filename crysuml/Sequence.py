@@ -11,6 +11,12 @@ class Sequence():
     def create(self):
         print("Creating Sequance diagram")
         create_uml_file(self.file_name)
+        for actor in self.actors:
+            if(actor.type != "component"):
+                write_file(
+                        file_name = self.file_name,
+                        string = F"{actor.type} {actor.name}\n",
+                        )
         for etape in self.sequence:
             write_file(
                     file_name = self.file_name,
