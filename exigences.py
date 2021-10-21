@@ -1,19 +1,12 @@
-from crysuml.exigences import exigence
+from crysuml.exigences import exigence, constrainte
 from crysuml.functions import (create_uml_file, write_file,
         end_file, link, draw_plantuml, class_diagram
         )
 
 exigences_list = [
         exigence(
-            name = "code_language",
-            verbose_name = "Langage de programation",
-            description = "L'interface graphique devra\netre developpee en python ou Qt.",
-            links = [
-                link(exigence="interface_graphique", type="extension"),
-                ]
-            ),
-        exigence(
             name = "settings",
+            color = "#red",
             verbose_name = "Modifier Parametres",
             description = """L'interface graphique devra permettre
             de modifier les paramettres du robot
@@ -79,7 +72,15 @@ envoyer des consignes manuelles de deplacement du robot
             description = "L'interface devra se comuniquer avec le robot par une signal\nBluetooth ou WiFi.",
             ),
         # ==== Constraintes du developpement ==== #
-        exigence(
+        constrainte(
+            name = "code_language",
+            verbose_name = "Langage de programation",
+            description = "L'interface graphique devra\netre developpee en python ou Qt.",
+            links = [
+                link(exigence="interface_graphique", type="extension"),
+                ]
+            ),
+        constrainte(
             name = "coding_constraint",
             verbose_name = "Codage",
             description = """Le code devra être clair,
@@ -90,7 +91,7 @@ envoyer des consignes manuelles de deplacement du robot
             Les commentaires seront rédigés en
             Anglais.""",
             ),
-        exigence(
+        constrainte(
             name = "version_control",
             verbose_name = "Outil de versionnage",
             description = """Les projets (Software/Hardware) devront
