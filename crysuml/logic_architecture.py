@@ -40,9 +40,9 @@ def logic_architecture_diagram(sequences_list):
     messages_list = get_messages_list(sequences_list)
     file_name = F"docs/diagrams/logic_architecture.txt"
     create_uml_file(file_name)
-    print(messages_list)
+    #print(messages_list)
     for element in messages_list:
-        print(element)
+        #print(element)
         write_file(
                 file_name = file_name,
                 string = F"""
