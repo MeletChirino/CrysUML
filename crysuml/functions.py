@@ -75,8 +75,8 @@ def get_list(class_name):
 def link_type(string):
     switcher = {
             "simple": ["--", ""],
-            "include": [".>", ": include"],
-            "extends": ["<.", ": extends"],
+            "include": ["<.", ": include"],
+            "extends": [".>", ": extends"],
             }
     return switcher[string]
 
