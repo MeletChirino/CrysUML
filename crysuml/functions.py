@@ -23,7 +23,7 @@ def create_md(**kwargs):
             else:
                 f.write(F'\n- {instance["name"]}')
             if not(instance['description'] == ""):
-                f.write(F': {instance["description"]}')
+                f.write(F': {instance["description"].rstrip()}')
         except:
             #print("Instance list were a dict list")
             pass
@@ -35,7 +35,7 @@ def create_md(**kwargs):
                 f.write(F'\n- {instance.name}')
 
             if not(instance.description == ""):
-                f.write(F': {instance.description}')
+                f.write(F': {instance.description.rstrip()}')
         except:
             #print("Instance list were a instance list")
             pass
@@ -43,7 +43,8 @@ def create_md(**kwargs):
     if kwargs.get('diagram_name'):
         diagram_file = class_diagram(
                 kwargs['instance_list'],
-                name = kwargs['diagram_name']
+                name = kwargs['diagram_name'],
+                type = kwargs['name'],
                 )
         f.write(F"\n\n![alt text]({diagram_file})\n")
 
@@ -124,13 +125,25 @@ def class_diagram(dict_list, **kwargs):
                     """
                 )
     # now we write the links
-    for element in dict_list:
-        if element.get("links"):
-            for link in element['links']:
-                write_file(
-                        file_name = file_name,
-                        string = F'{element["name"]} {link_element(link, "exigence")}\n'
-                        )
+    if kwargs['type'] == "Exigences":
+        for element in dict_list:
+            if element.get("links"):
+                for link in element['links']:
+                    if link.get('exigence'):
+                        write_file(
+                                file_name = file_name,
+                                string = F'{element["name"]} {link_element(link, "exigence")}\n'
+                                )
+    elif kwargs['type'] == 'Specifications':
+        for element in dict_list:
+            if element.get("links"):
+                for link in element['links']:
+                    if link.get('spec'):
+                        write_file(
+                                file_name = file_name,
+                                string = F'{element["name"]} {link_element(link, "spec")}\n'
+                                )
+
     end_file(file_name)
     draw_plantuml(file_name)
     return F"diagrams/{kwargs['name']}_class.png"
