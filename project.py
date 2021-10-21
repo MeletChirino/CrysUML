@@ -1,12 +1,20 @@
 from usecase import *
 from exigences import *
 from sequences import *
+from specs import specs_list
 from crysuml.matrix import matrix
 from crysuml.functions import create_md
 from crysuml.logic_architecture import *
 from crysuml.Sequence import Sequence
 
 def main():
+    create_md(
+            name = "Specifications",
+            description = "This file shows specs",
+            instance_list = specs_list,
+            diagram_name = "specifications",
+            footer = "We all agreed 28/sept/2021",
+            )
     create_md(
             name = "Exigences",
             description = "This file shows exigences",
