@@ -112,11 +112,20 @@ def class_diagram(dict_list, **kwargs):
 
     #write clases
     create_uml_file(file_name)
+    write_file(
+            file_name = file_name,
+            string = F"""
+            title {name}
+            scale 1024 width
+            scale 768 height
+            \n
+                """
+            )
     for element in dict_list:
         write_file(
                 file_name = file_name,
                 string = F"""
-                    class {element['name']} {{
+                    class {element['name']} {element['color']}{{
                     .. name ..
                     {element['verbose_name']}
                     .. description ..
