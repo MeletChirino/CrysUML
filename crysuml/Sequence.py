@@ -11,30 +11,31 @@ message(
     categorie="Logical Categorie"[string]
     )
 
-def reponse(
+reponse(
     starts=starting_actor[Actor],
     ends=endind_actor[Actor],
     message="message string"[string],
     categorie="Logical Categorie"[string]
     )
 
-def activate(actor=activated_actor[Actor])
+activate(actor=activated_actor[Actor])
 
-def deactivate(actor=activated_actor[Actor])
+deactivate(actor=activated_actor[Actor])
 
-def loop(condition="loop condition"[string])
-def alt(condition="loop condition"[string])
-def elsif(condition="loop condition"[string])
+loop(condition="loop condition"[string])
+alt(condition="if condition"[string])
+elsif(condition="new condition"[string])
+opt(condition="optional condition")
 
-def end():
+end():
 
-def ref(ref_sequence=sequence_diagram[Sequence], over=[actor1, actor2, ...][Actor]):
+ref(ref_sequence=sequence_diagram[Sequence], over=[actor1, actor2, ...][Actor]):
 
-def divider():
+divider():
         """
         self.name = kwargs['name']
         self.file_name = F"docs/diagrams/{self.name}_sequence.txt"
-        self.links = kwargs['links']
+        if kwargs.get('links'): self.links = kwargs['links']
         self.actors = kwargs['actors']
         self.sequence = kwargs['sequence_list']
 
@@ -69,6 +70,8 @@ def seq_to_string(message):
         final_string = F"loop {message['condition']}"
     elif message_type == 'alt':
         final_string = F"alt {message['condition']}"
+    elif message_type == 'opt':
+        final_string = F"opt {message['condition']}"
     elif message_type == 'else':
         final_string = F"else {message['condition']}"
     elif message_type == 'end':
@@ -76,6 +79,10 @@ def seq_to_string(message):
     elif message_type == 'divider':
         final_string = F"==== {message['title']} ===="
     elif message_type == 'ref':
-        final_string = F"ref :{message['ref_sequence']}"
+        final_string = F"ref over "
+        final_string += F"{message['over'][0].name}"
+        for actor in message['over'][1:]:
+            final_string += F", {actor.name}"
+        final_string += F"\n{message['ref_sequence'].name}"
     return F"{final_string}\n"
 

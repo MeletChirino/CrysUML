@@ -179,6 +179,10 @@ def elsif(**kwargs):
     kwargs['type'] = 'else'
     return kwargs
 
+def opt(**kwargs):
+    kwargs['type'] = 'opt'
+    return kwargs
+
 def end(**kwargs):
     kwargs['type'] = 'end'
     return kwargs
