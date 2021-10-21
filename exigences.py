@@ -26,7 +26,18 @@ exigences_list = [
             name = "receive_info",
             verbose_name = "Recevoir information",
             description = """L'interface devra afficher les donnees
-            des capteurs(vitesse, position, etc)""",
+            des capteurs(vitesse, position)""",
+            links = [
+                link(exigence="interface_graphique", type="extension"),
+                ]
+            ),
+        exigence(
+            name = "manual_mode",
+            verbose_name = "Mode Manuel",
+            description = """L'Interface permettre d'
+envoyer des consignes manuelles de deplacement du robot
+(avancer, reculer, rotation gauche, rotation droite)
+            """,
             links = [
                 link(exigence="interface_graphique", type="extension"),
                 ]
@@ -51,7 +62,7 @@ exigences_list = [
             ),
         exigence(
             name = "functions",
-            verbose_name = "fonctions",
+            verbose_name = "Mode Semi-Autonome",
             description = """L’interface PC devra permettre de piloter
             de façon semi-autonome le robot.
             L’utilisateur définira une position
@@ -64,8 +75,8 @@ exigences_list = [
             ),
         exigence(
             name = "wireless",
-            verbose_name = "Comunication sans fils\n (Wifi ou Bluetooth)",
-            description = "L'interface devra se comuniquer avec le robot par une signal\nsans-fil.",
+            verbose_name = "Comunication sans fils",
+            description = "L'interface devra se comuniquer avec le robot par une signal\nBluetooth ou WiFi.",
             ),
         # ==== Constraintes du developpement ==== #
         exigence(

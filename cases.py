@@ -2,72 +2,41 @@ from crysuml.UseCase import Case
 from crysuml.functions import link
 from actors import *
 
+set_parameters = Case(
+        name = 'Set Parameters (speed/acceleration)',
+        links = [
+            link(exigence='settings'),
+            link(actor=motors, type='simple'),
+            link(actor=operator, type='simple'),
+            ]
+        )
 single_move = Case(
-        name = "Single move",
+        name = "Manual mode",
+        description = "In this mode we are going to drive the robot with manual buttons to place it where we want.",
         links = [
             link(actor=operator, type='simple'),
-            link(actor=raspi, type='simple'),
-            link(exigence='messages'),
+            link(actor=motors, type='simple'),
+            link(exigence='manual_mode'),
             ]
         )
-test = Case(
-        name = "Test",
+auto_move = Case(
+        name = "Semi-Autonomous Mode",
         links = [
+            link(exigence='functions'),
+            link(actor=camera, type='simple'),
             link(actor=operator, type='simple'),
-            link(actor=raspi, type='simple'),
-            link(exigence='messages'),
             ]
         )
-scan = Case(
-        name = "Scan",
-        links = [
-            link(actor=operator, type='simple'),
-            link(actor=raspi, type='simple'),
-            link(exigence='messages'),
-            ]
-        )
+
 receive_data = Case(
         name = 'Receive Data',
+        description = 'From Lidar Groupe we are going to receive cartographie info. From Camera3d Group we are going to receive speed, position and status.',
         links = [
-            link(actor=raspi, type='simple'),
-            link(exigence='wireless'),
+            link(actor=camera, type='simple'),
+            link(actor=lidar, type='simple'),
+            link(exigence='receive_info'),
+            link(case=single_move, type='include'),
+            link(case=auto_move , type='include'),
             ]
         )
-save_data= Case(
-        name = 'Save data',
-        links = [
-            link(case=receive_data, type='include'),
-            ]
-        )
-save_video = Case(
-        name = 'Save Video',
-        description = 'Users may want a video at the end of the scan',
-        links = [
-            link(case=save_data, type='extends'),
-            link(exigence='final_report'),
-            ]
-        )
-save_3d  = Case(
-        name = 'Save 3D info',
-        description = 'Users may want 3D info at the end of the scan',
-        links = [
-            link(case=save_data, type='extends'),
-            link(exigence='final_report'),
-            ]
-        )
-rt_data = Case(
-        name = 'Show real-time data',
-        links = [
-            link(actor=operator, type='simple'),
-            link(actor=raspi, type='simple'),
-            link(exigence="real_time"),
-            link(case=receive_data, type='extends'),
-            ]
-        )
-final_data = Case(
-        name = "Show final data",
-        links = [
-            link(actor=operator, type='simple'),
-            link(exigence='final_report'),
-            ]
-        )
+
