@@ -23,7 +23,7 @@ def create_md(**kwargs):
             else:
                 f.write(F'\n- {instance["name"]}')
             if not(instance['description'] == ""):
-                f.write(F': {instance["description"].rstrip()}')
+                f.write(F': {instance["description"].lstrip()}')
         except:
             #print("Instance list were a dict list")
             pass
@@ -35,7 +35,7 @@ def create_md(**kwargs):
                 f.write(F'\n- {instance.name}')
 
             if not(instance.description == ""):
-                f.write(F': {instance.description.rstrip()}')
+                f.write(F': {instance.description.lstrip()}')
         except:
             #print("Instance list were a instance list")
             pass
