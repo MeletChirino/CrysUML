@@ -1,6 +1,7 @@
 '''General functions for crysuml'''
 import gc
 import plantuml
+from .matrix import matrix
 
 def create_md(**kwargs):
     ''' This function writes a mark down file
@@ -37,8 +38,37 @@ def create_md(**kwargs):
             if not(instance.description == ""):
                 f.write(F': {instance.description.lstrip()}')
         except:
-            #print("Instance list were a instance list")
             pass
+    if(kwargs.get('matrix')):
+        table = matrix(
+                kwargs['matrix'][0],
+                kwargs['matrix'][1],
+                kwargs['matrix'][2],
+                kwargs['matrix'][3],
+                )
+        i = 0
+        f.write("\n\n| |")
+        for row in kwargs['matrix'][1]:
+            f.write(F" {row['verbose_name']} |");
+        f.write("\n| --- |")
+        for row in kwargs['matrix'][1]:
+            f.write(F" --- |");
+        f.write("\n")
+        for column in kwargs['matrix'][0]:
+            try:
+                f.write(F"| {column.name} |")
+            except:
+                f.write(F"| {column['verbose_name']} |")
+            j = 0
+            for row in kwargs['matrix'][1]:
+                if(table[i, j] == 1):
+                    f.write(" X |")
+                else:
+                    f.write(" |")
+                j += 1
+            i += 1
+            f.write("\n")
+
 
     if kwargs.get('diagram_name'):
         diagram_file = class_diagram(
