@@ -33,7 +33,6 @@ set_parameters = Sequence(
             deactivate(actor=operator),
             ],
         )
-set_parameters.create()
 manual_mode_seq = Sequence(
         name = "Manual mode",
         actors = get_list(Actor),
@@ -58,7 +57,6 @@ manual_mode_seq = Sequence(
             deactivate(actor=operator),
             ]
         )
-manual_mode_seq.create()
 receive_data = Sequence(
         name = 'Receive Data',
         actors = get_list(Actor),
@@ -78,7 +76,6 @@ receive_data = Sequence(
             deactivate(actor=gui),
             ],
         )
-receive_data.create()
 semi_auto_move = Sequence(
         name = "Semi-Autonomous Mode",
         actors = get_list(Actor),
@@ -112,37 +109,3 @@ semi_auto_move = Sequence(
             deactivate(actor=gui),
             ],
         )
-semi_auto_move.create()
-"""
-test = Sequence(
-        name = "Test",
-        #actors = actor_list,
-        actors = get_list(Actor),
-        links = [
-            link(case=single_move),
-            ],
-        sequence_list = [
-            message(starts=operator, ends=gui, message="test connection"),
-            activate(actor=operator),
-            activate(actor=raspi),
-            activate(actor=gui),
-            loop(condition="for 3 times"),
-            message(starts=gui, ends=raspi, message="test_connection()", categorie="communication_api"),
-            alt(condition="good connection"),
-            message(starts=raspi, ends=raspi, message="starting_test()", categorie="test_commands"),
-            message(starts=raspi, ends=gui, message="send_status(operator)", categorie="communication_api"),
-            reponse(starts=gui, ends=operator, message="status"),
-            message(starts=gui, ends=gui, message="break(loop)"),
-            elsif(condition="connection timeout"),
-            message(starts=gui, ends=gui, message="try_again()"),
-            deactivate(actor=operator),
-            deactivate(actor=raspi),
-            deactivate(actor=gui),
-            end(),
-            end()
-            ]
-        )
-
-single_move.create()
-test.create()
-"""

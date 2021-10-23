@@ -5,6 +5,9 @@ specs_list = [
             name = "piloter",
             verbose_name = "Piloter le robot",
             description = "L'interface doit piloter\nle robot a distance avec\nun ordinateur.",
+            links = [
+                link(exigence="piloter"),
+                ],
             ),
         spec(
             name = "frontend",
