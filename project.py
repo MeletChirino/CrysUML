@@ -4,11 +4,22 @@ from sequences import *
 from specs import specs_list
 from crysuml.matrix import matrix
 from crysuml.functions import create_md
-from crysuml.logic_architecture import *
+from crysuml.LogicArch import *
 from crysuml.Sequence import Sequence
+from crysuml.PhysicArch import *
+from components import *
 
 def main():
-    matrix(specs_list, exigences_list, 'exigence', 'Specs V Besoins')
+    sequences_list = get_list(Sequence)
+    logic_architecture_diagram(sequences_list)
+    components_list = get_list(Component)
+    Arch = PhysicalArch(
+            components_list = components_list,
+            sequences_list = sequences_list,
+            connections = connections_list
+            )
+    Arch.diagram()
+    """
     semi_auto_move.create()
     set_parameters.create()
     receive_data.create()
@@ -44,9 +55,8 @@ def main():
             )
     use_case_diagram.create()
     matrix(cases_list, exigences_list, 'exigence', 'Cases V Besoins')
-    sequences_list = get_list(Sequence)
-    logic_architecture_diagram(sequences_list)
 
     return 0
+"""
 
 main()

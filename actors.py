@@ -1,7 +1,7 @@
 from crysuml.UseCase import Actor
 
 operator = Actor(
-        name = 'Operator',
+        name = 'Operator2',
         description = 'Operator is going to say the robot what they should do'
         )
 lidar = Actor(
