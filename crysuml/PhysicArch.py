@@ -62,7 +62,7 @@ def connect(port1, port2, **kwargs):
     if kwargs.get('bidirectional'):
         if kwargs['bidirectional'] and kwargs.get('message'):
             return F"{port1} <--> {port2} : {kwargs['message']}\n"
-        elif kwargs['bidiectional']:
+        elif kwargs['bidirectional']:
             return F"{port1} <--> {port2}\n"
     if kwargs.get('message'):
         return F"{port1} --> {port2} : {kwargs['message']}\n"
