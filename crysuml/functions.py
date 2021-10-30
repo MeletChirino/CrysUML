@@ -184,8 +184,8 @@ def class_diagram(dict_list, **kwargs):
     draw_plantuml(file_name)
     return F"diagrams/{kwargs['name']}_class.png"
 
-
 def link_element(link, kw):
+
     if link['type'] == 'simple':
         return F"-- {link[kw]}"
     elif link['type'] == 'extension':

@@ -81,7 +81,7 @@ class Diagram():
         f.write("@startuml\nleft to right direction\n")
         f.close()
         f = open(file_name, "a")
-        print("Creating Use Case diagram")
+        #print("Creating Use Case diagram")
 
         for actor in self.actors:
             f.write(F"{actor.type} \"{actor.name}\"\n")
