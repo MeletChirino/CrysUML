@@ -107,14 +107,6 @@ def get_list(class_name):
 
     return class_list
 
-def link_type(string):
-    switcher = {
-            "simple": ["--", ""],
-            "include": ["<.", ": include"],
-            "extends": [".>", ": extends"],
-            }
-    return switcher[string]
-
 def check_kwargs(string, kwargs, **default):
     if string in kwargs and kwargs[string]:
         return kwargs[string]
@@ -206,48 +198,4 @@ def link_element(link, kw):
 
 #functions for linking and write properties to diagrams and objects
 def link(**kwargs):
-    return kwargs
-
-def message(**kwargs):
-    kwargs['type'] = 'message'
-    return kwargs
-
-def reponse(**kwargs):
-    kwargs['type'] = 'reponse'
-    return kwargs
-
-def activate(**kwargs):
-    kwargs['type'] = 'activate'
-    return kwargs
-
-def deactivate(**kwargs):
-    kwargs['type'] = 'deactivate'
-    return kwargs
-
-def loop(**kwargs):
-    kwargs['type'] = 'loop'
-    return kwargs
-
-def alt(**kwargs):
-    kwargs['type'] = 'alt'
-    return kwargs
-
-def elsif(**kwargs):
-    kwargs['type'] = 'else'
-    return kwargs
-
-def opt(**kwargs):
-    kwargs['type'] = 'opt'
-    return kwargs
-
-def end(**kwargs):
-    kwargs['type'] = 'end'
-    return kwargs
-
-def ref(**kwargs):
-    kwargs['type'] = 'ref'
-    return kwargs
-
-def divider(**kwargs):
-    kwargs['type'] = 'divider'
     return kwargs

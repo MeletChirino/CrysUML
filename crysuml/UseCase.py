@@ -118,3 +118,10 @@ def get_case_u(cases, case_name):
         i += 1
     pass
 
+def link_type(string):
+    switcher = {
+            "simple": ["--", ""],
+            "include": ["<.", ": include"],
+            "extends": [".>", ": extends"],
+            }
+    return switcher[string]

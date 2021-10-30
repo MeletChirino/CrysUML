@@ -89,3 +89,46 @@ def seq_to_string(message):
         final_string += F"\n{message['ref_sequence'].name}"
     return F"{final_string}\n"
 
+def message(**kwargs):
+    kwargs['type'] = 'message'
+    return kwargs
+
+def reponse(**kwargs):
+    kwargs['type'] = 'reponse'
+    return kwargs
+
+def activate(**kwargs):
+    kwargs['type'] = 'activate'
+    return kwargs
+
+def deactivate(**kwargs):
+    kwargs['type'] = 'deactivate'
+    return kwargs
+
+def loop(**kwargs):
+    kwargs['type'] = 'loop'
+    return kwargs
+
+def alt(**kwargs):
+    kwargs['type'] = 'alt'
+    return kwargs
+
+def elsif(**kwargs):
+    kwargs['type'] = 'else'
+    return kwargs
+
+def opt(**kwargs):
+    kwargs['type'] = 'opt'
+    return kwargs
+
+def end(**kwargs):
+    kwargs['type'] = 'end'
+    return kwargs
+
+def ref(**kwargs):
+    kwargs['type'] = 'ref'
+    return kwargs
+
+def divider(**kwargs):
+    kwargs['type'] = 'divider'
+    return kwargs
