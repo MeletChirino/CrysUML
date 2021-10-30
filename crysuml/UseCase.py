@@ -3,8 +3,12 @@ from .functions import draw_plantuml, link_type, check_kwargs, link
 
 class Actor():
     def __init__(self, **kwargs):
-        """ keywords:
-            name, type, description, note
+        """ 
+        keywords:
+            name: Name of the actor
+            type: type of the actor human, composant, cloud
+            description: Actors description
+            note: Any notes? type them here (They are useless so far)
         """
         self.name = kwargs['name']
         if 'type' in kwargs and kwargs['type']: self.type = kwargs['type']
@@ -23,6 +27,19 @@ class Actor():
 
 class Case():
     def __init__(self, **kwargs):
+                """ 
+        keywords:
+            name: Name of the case
+            verbose_name: Verbose name of the case
+            description: Actors description
+            note: Any notes? type them here (They are useless so far)
+            links: This is where you link your case with Actors, other cases and exigences. Example:
+                links = [
+                    link(actor=lidar, type='simple'),
+                    link(exigence='receive_info'),
+                    link(case=single_move, type='include'),
+                    ]
+        """
         if not(kwargs.get('links')):
             raise Exception('You must set links, if any use links = []')
 
@@ -40,6 +57,13 @@ class Package():
 
 class Diagram():
     def __init__(self, **kwargs):
+        '''This class takes a list of use cases and actors and draws a use case diagram
+        keywords:
+        name
+        cases
+        actors
+        system_name
+        '''
         self.name = ""
         if kwargs.get('name'):
             self.name = kwargs['name']

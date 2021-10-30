@@ -1,37 +1,38 @@
-from .functions import *
+'''Sequence diagram library'''
+from .functions import link
 
 class Sequence():
     def __init__(self, **kwargs):
         """
         Those are options of sequence diagram
-message(
-    starts=starting_actor[Actor],
-    ends=endind_actor[Actor],
-    message="message string"[string],
-    categorie="Logical Categorie"[string]
-    )
+        message(
+            starts=starting_actor[Actor],
+            ends=endind_actor[Actor],
+            message="message string"[string],
+            categorie="Logical Categorie"[string]
+            )
 
-reponse(
-    starts=starting_actor[Actor],
-    ends=endind_actor[Actor],
-    message="message string"[string],
-    categorie="Logical Categorie"[string]
-    )
+        reponse(
+            starts=starting_actor[Actor],
+            ends=endind_actor[Actor],
+            message="message string"[string],
+            categorie="Logical Categorie"[string]
+            )
 
-activate(actor=activated_actor[Actor])
+        activate(actor=activated_actor[Actor])
 
-deactivate(actor=activated_actor[Actor])
+        deactivate(actor=activated_actor[Actor])
 
-loop(condition="loop condition"[string])
-alt(condition="if condition"[string])
-elsif(condition="new condition"[string])
-opt(condition="optional condition")
+        loop(condition="loop condition"[string])
+        alt(condition="if condition"[string])
+        elsif(condition="new condition"[string])
+        opt(condition="optional condition")
 
-end():
+        end():
 
-ref(ref_sequence=sequence_diagram[Sequence], over=[actor1, actor2, ...][Actor]):
+        ref(ref_sequence=sequence_diagram[Sequence], over=[actor1, actor2, ...][Actor]):
 
-divider():
+        divider():
         """
         self.name = kwargs['name']
         self.file_name = F"docs/diagrams/{self.name}_sequence.txt"
@@ -40,7 +41,8 @@ divider():
         self.sequence = kwargs['sequence_list']
 
     def create(self):
-        print("Creating Sequance diagram")
+        '''This method has no arguments, it creates the sequence diagram'''
+        #print("Creating Sequance diagram")
         create_uml_file(self.file_name)
         for actor in self.actors:
             if(actor.type != "component"):
@@ -57,6 +59,7 @@ divider():
         draw_plantuml(self.file_name)
 
 def seq_to_string(message):
+    """This function writes in text file the sequence of the diagram in plantuml format"""
     message_type = message['type']
     if message_type == "message":
         final_string = F"{message['starts'].name} -> {message['ends'].name} : {message['message']}"

@@ -1,3 +1,4 @@
+'''Matrix creator'''
 from numpy import zeros
 
 def matrix(lines, rows, link_key, name):

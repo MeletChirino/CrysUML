@@ -85,6 +85,9 @@ def create_md(**kwargs):
     f.close()
 
 def draw_plantuml(file_name):
+    '''This function writes a uml diagram if there is a file written in plantuml format
+    :params string file_name: file's path
+    '''
     try:
         diagram = plantuml.PlantUML(
                 url='http://www.plantuml.com/plantuml/img/',
@@ -92,9 +95,10 @@ def draw_plantuml(file_name):
         diagram.processes_file(file_name)
         return diagram
     except Exception as e:
-        print(e)
+        print(F"Looks like a pantuml Error:\n{e}\nIf you didn't get it you can try to compile the file in plantuml web compiler")
 
 def get_list(class_name):
+    '''This function gets a list of all instances of a single class.'''
     trash = gc.get_objects()
     class_list = []
     for obj in trash:
@@ -137,6 +141,7 @@ def end_file(file_name):
 
 #functions for exigence file
 def class_diagram(dict_list, **kwargs):
+    '''This function creates a class diagram of a list of dictionaries'''
     name = kwargs['name']
     file_name = F"docs/diagrams/{kwargs['name']}_class.txt"
 

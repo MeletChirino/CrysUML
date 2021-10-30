@@ -1,6 +1,7 @@
+'''Logic Architecture'''
 from crysuml.functions import *
 def get_categorie_list(sequences_list):
-    #esta funcion debe primero buscar las categorias que hay en los msnajes, luego guarda la lista de mensajes que pertenezcan a esta categoria. los  huerfanos pueden simplemente ir a una categoria default
+    '''This function search for categories in messages of sequence diagrams and saves them.'''
     categorie_list = ["default",]
     for instance in sequences_list:
         for message_dict in instance.sequence:
@@ -11,6 +12,7 @@ def get_categorie_list(sequences_list):
     return categorie_list
 
 def get_messages_list(sequences_list):
+    '''This function gets all messages of a sequences diagrams list'''
     categorie_list = get_categorie_list(sequences_list)
     final_list = []
     temp_list = []
@@ -35,8 +37,8 @@ def get_messages_list(sequences_list):
         temp_dict = {}
     return final_list
 
-
 def logic_architecture_diagram(sequences_list):
+    '''This function creates the logic architecture diagram based on sequence diagrams'''
     messages_list = get_messages_list(sequences_list)
     file_name = F"docs/diagrams/logic_architecture.txt"
     create_uml_file(file_name)
