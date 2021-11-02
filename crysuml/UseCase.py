@@ -1,5 +1,5 @@
 """ main package from crysuml"""
-from .functions import draw_plantuml, link_type, check_kwargs, link
+from .functions import draw_plantuml, check_kwargs, link
 
 class Actor():
     def __init__(self, **kwargs):
@@ -27,7 +27,7 @@ class Actor():
 
 class Case():
     def __init__(self, **kwargs):
-                """ 
+        """ 
         keywords:
             name: Name of the case
             verbose_name: Verbose name of the case
@@ -38,8 +38,7 @@ class Case():
                     link(actor=lidar, type='simple'),
                     link(exigence='receive_info'),
                     link(case=single_move, type='include'),
-                    ]
-        """
+                    ]"""
         if not(kwargs.get('links')):
             raise Exception('You must set links, if any use links = []')
 

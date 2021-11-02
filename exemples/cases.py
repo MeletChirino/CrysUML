@@ -1,6 +1,6 @@
 from crysuml.UseCase import Case
 from crysuml.functions import link
-from actors import *
+from .actors import *
 
 set_parameters = Case(
         name = 'Set Parameters (speed/acceleration)',

@@ -3,12 +3,27 @@ from crysuml.functions import link
 specs_list = [
         spec(
             name = "piloter",
-            verbose_name = "Piloter le robot",
-            description = "L'interface doit piloter\nle robot a distance avec\nun ordinateur.",
+            verbose_name = "Pilotage PC",
+            description = "L'interface graphique doit\npiloter le robot à distance\navec un ordinateur disponible\nsur Windows ou Linux.",
             links = [
                 link(exigence="piloter"),
                 ],
             ),
+        spec(#new new
+            name = "wireless",
+            verbose_name = "Wireless communication",
+            description = """
+            L’interface graphique
+            sur PC communiquera
+            directement avec le
+            module WiFi sur le
+            Raspberry Pi 4 de
+            l’unité centrale.
+            """,
+            links = [
+                link(exigence = 'wireless'),
+            ],
+        ),
         spec(
             name = "frontend",
             verbose_name = "Frontend",
@@ -19,13 +34,19 @@ specs_list = [
                 link(exigence='code_language'),
                 ],
             ),
-        spec(
+        spec(#new
             name = "api",
             verbose_name = "Communication API",
-            description="L'interface doit avoir une\nAPI de communication pour\nechanger des donnes ave\nle robot",
+            description="""Le backend de l'interface
+            graphique doit avoir une
+            API de communication pour
+            échanger des données avec
+            le robot.
+            """,
             links = [
                 link(spec="piloter", type="extension"),
                 link(exigence='wireless'),
+                link(spec='wireless', type='extension'),
                 link(exigence="receive_info"),
                 ],
             ),
@@ -38,85 +59,129 @@ specs_list = [
                 link(exigence="receive_info"),
                 ]
             ),
-        spec(
+        spec(#new
             name='lidar_process',
             verbose_name = 'Lidar Processing',
-            description = "Lo'interface doit entre capable\nde processer et manipuler\nl'information du Lidar en\nmoins de 20 seconds",
+            description = "L’interface graphique doit être capable de traiter et utiliser l'information du Lidar en moins de 20 seconds.",
             links = [
                 link(exigence="functions"),
                 ]
             ),
-        spec(
+        spec(#new
             name = "lidar_show",
             verbose_name = "Show Lidar",
-            description = "Le frontend doit montrer \nl'information du lidar\nde facon comprensible\npour un etre humain",
+            description = "L'API doit recevoir des données du Lidar pour créer la cartographie et pour connaitre la position actuelle du robot.",
             links = [
                 link(spec='frontend', type="extension"),
                 link(spec='lidar_process', type="extension"),
                 link(exigence="receive_info"),
                 ]
             ),
-        spec(
+        spec(#new
             name = 'data_api',
             verbose_name = 'Get Plain Data',
-            description = "L'interface doit recevoir et\nmontrer des donnees\nen text plain comme\nla vitesse ou l'acceleration",
+            description = """
+            L'interface graphique
+            doit recevoir les
+            données des capteurs
+            et les montrer
+            immédiatement sur des
+            widgets texte brut.
+            """,
             links = [
                 link(spec="frontend", type="extension"),
                 link(spec="api", type="extension"),
                 link(exigence="receive_info"),
                 ]
             ),
-        spec(
+        spec(#new
             name = "buttons",
-            verbose_name = "Direction Buttons",
-            description = "L'interface doit avoir des\nboutons pour une pilotage\nmanual du robot.\nLes fonctions de ses boutons\nseront :\nAvancer\nReculer\nTourner gauche\nTourner a droite",
+            verbose_name = "Buttons mode manuel",
+            description = """
+            L'interface graphique
+            doit avoir des boutons
+            pour un pilotage manuel
+            du robot. Les fonctions
+            de ces boutons seront :
+            Avancer, reculer, rotation
+            gauche et rotation droite.
+            Ces boutons seront désactivés
+            tant que le mode semi-
+            autonome est actif.
+            """,
             links = [
                 link(spec="frontend", type="extension"),
                 link(spec="api", type="extension"),
                 link(exigence="manual_mode"),
                 ],
             ),
-        spec(
+        spec(#new
             name = 'errors',
             verbose_name = 'Error Handling',
-            description = "L'interface doit etre capable\nde recevoir les erreurs\ndu robot et de les montrer a\nl'utlisateur",
+            description = """
+            L'interface doit être
+            capable de recevoir les
+            erreurs du robot et de
+            les montrer à l'utilisateur
+            immédiatement sur des
+            widgets texte brut.""",
             links = [
                 link(spec="frontend", type="extension"),
                 link(spec="api", type="extension"),
                 link(exigence="functions"),
                 ],
             ),
-        spec(
+        spec(#new
             name = 'select_points',
             verbose_name = 'Points in the map',
-            description = 'L\'interface doit etre capable\nde selectioner un point dans\nla representation des donnees\ndu lidar et de le convertir\nen une coordonee relative.',
+            description = '''
+            L'interface doit permettre
+            à l’utilisateur de
+            sélectionner un point
+            d'arrivée dans la cartographie
+            et de le convertir en une
+            coordonnée compréhensible par
+            l’unité centrale.
+            ''',
             links = [
                 link(spec='lidar_process', type="extension"),
                 link(spec='frontend', type="extension"),
-                ],
-            ),
-        spec(
-            name = 'send_coordinates',
-            verbose_name = 'Send Coordinates',
-            description = "L'api de communication\ndoit etre capable\nd'envoyer des coordonnes\nrelatives de deplacement\npour le movement semi-\nautomatique du robot",
-            links = [
                 link(spec="api", type="extension"),
                 ],
             ),
-        spec(
+        spec(#new
+            name = 'send_coordinates',
+            verbose_name = 'Send Coordinates',
+            description = """
+            L'API de communication
+            doit être capable d'envoyer
+            des coordonnées de
+            déplacement pour le mouvement
+            semi-automatique du robot.""",
+            links = [
+
+                ],
+            ),
+        spec(#new
             name = "traject_status",
-            verbose_name = 'Traject status',
-            description = "L'interface doit nous dire le\nstatus du trajet en mode\nsemiautomatique. Les status\ndisponibles seront :\nMoving\nFinished\nError (si le cas)",
+            verbose_name = 'Etat du trajet',
+            description = """
+            L'interface graphique doit
+            être capable de recevoir
+            l’état du trajet en mode
+            semi-autonome. Soit le
+            trajet est en cours, soit
+            il est complet.""",
             links = [
                 link(spec='api', type="extension"),
                 link(spec='frontend', type="extension"),
                 link(spec='errors', type="extension"),
                 ]
             ),
-        spec(
+        spec(#new
             name = 'set_params',
             verbose_name = "Set Parameters",
-            description="L'interface doit etre capable\nde modifier des parametres\nde mouvement du robot comme\nla vitesse ou l'acceleration.",
+            description=" L'interface doit être\ncapable de modifier les\nparamètres de déplacement\ndu robot comme la vitesse\nou l'accélération en\nutilisant des widgets de\nsaisie de texte connectés\nà l’API de communication.",
             links = [
                 link(spec='api', type="extension"),
                 link(spec='frontend', type="extension"),

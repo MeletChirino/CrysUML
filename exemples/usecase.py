@@ -1,7 +1,7 @@
 from crysuml.functions import get_list
 from crysuml.UseCase import Diagram
-from cases import *
-from actors import *
+from .cases import *
+from .actors import *
 
 #this command lists all the cases in cases.py
 #if you want to skip any case you can either pop it 

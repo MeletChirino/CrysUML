@@ -5,11 +5,11 @@ from crysuml.LogicArch import *
 from crysuml.Sequence import Sequence
 from crysuml.PhysicArch import *
 # files with info
-from sequences import *
-from components import *
-from usecase import *
-from exigences import *
-from specs import specs_list
+from exemples.sequences import *
+from exemples.components import *
+from exemples.usecase import *
+from exemples.exigences import *
+from exemples.specs import specs_list
 
 def main():
     sequences_list = get_list(Sequence)
@@ -21,10 +21,7 @@ def main():
             connections = connections_list
             )
     Arch.diagram()
-    semi_auto_move.create()
-    set_parameters.create()
-    receive_data.create()
-    manual_mode_seq.create()
+
     create_md(
             name = "Specifications",
             description = "This file shows specs",

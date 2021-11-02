@@ -1,8 +1,8 @@
-from crysuml.Sequence import Sequence
+from crysuml.Sequence import *
 from crysuml.functions import *
 from crysuml.UseCase import Actor
-from cases import *
-from actors import *
+from .cases import *
+from .actors import *
 
 gui = Actor(
         name = 'GUI',
@@ -55,7 +55,7 @@ manual_mode_seq = Sequence(
             deactivate(actor=motors),
             deactivate(actor=gui),
             deactivate(actor=operator),
-            ]
+            ],
         )
 receive_data = Sequence(
         name = 'Receive Data',
@@ -109,3 +109,8 @@ semi_auto_move = Sequence(
             deactivate(actor=gui),
             ],
         )
+
+semi_auto_move.create()
+set_parameters.create()
+receive_data.create()
+manual_mode_seq.create()

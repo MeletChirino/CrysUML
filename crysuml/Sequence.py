@@ -1,5 +1,5 @@
 '''Sequence diagram library'''
-from .functions import link
+from .functions import *
 
 class Sequence():
     def __init__(self, **kwargs):
@@ -32,8 +32,7 @@ class Sequence():
 
         ref(ref_sequence=sequence_diagram[Sequence], over=[actor1, actor2, ...][Actor]):
 
-        divider():
-        """
+        divider():"""
         self.name = kwargs['name']
         self.file_name = F"docs/diagrams/{self.name}_sequence.txt"
         if kwargs.get('links'): self.links = kwargs['links']
