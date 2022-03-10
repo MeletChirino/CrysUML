@@ -32,7 +32,7 @@ class PhysicalArch():
                 )
 
     def diagram(self):
-        file_name = F"docs/diagrams/{self.name}_diagram.txt"
+        file_name = F"docs/diagrams/{self.name}_diagram.iuml"
         f = open(file_name, "w")
         f.write("@startuml\nleft to right direction\n")
         #write categories

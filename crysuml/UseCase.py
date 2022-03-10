@@ -75,7 +75,7 @@ class Diagram():
 
     def create(self):
         #create use case diagram with plantuml
-        file_name = "docs/diagrams/use_case_diagram.txt"
+        file_name = "docs/diagrams/use_case_diagram.iuml"
         f = open(file_name, "w")
         f.write("@startuml\nleft to right direction\n")
         f.close()

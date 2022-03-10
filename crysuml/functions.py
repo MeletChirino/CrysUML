@@ -135,7 +135,7 @@ def end_file(file_name):
 def class_diagram(dict_list, **kwargs):
     '''This function creates a class diagram of a list of dictionaries'''
     name = kwargs['name']
-    file_name = F"docs/diagrams/{kwargs['name']}_class.txt"
+    file_name = F"docs/diagrams/{kwargs['name']}_class.iuml"
 
     #write clases
     create_uml_file(file_name)

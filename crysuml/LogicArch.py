@@ -40,7 +40,7 @@ def get_messages_list(sequences_list):
 def logic_architecture_diagram(sequences_list):
     '''This function creates the logic architecture diagram based on sequence diagrams'''
     messages_list = get_messages_list(sequences_list)
-    file_name = F"docs/diagrams/logic_architecture.txt"
+    file_name = F"docs/diagrams/logic_architecture.iuml"
     create_uml_file(file_name)
     #print(messages_list)
     for element in messages_list:

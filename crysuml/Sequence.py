@@ -34,7 +34,7 @@ class Sequence():
 
         divider():"""
         self.name = kwargs['name']
-        self.file_name = F"docs/diagrams/{self.name}_sequence.txt"
+        self.file_name = F"docs/diagrams/{self.name}_sequence.iuml"
         if kwargs.get('links'): self.links = kwargs['links']
         self.actors = kwargs['actors']
         self.sequence = kwargs['sequence_list']
