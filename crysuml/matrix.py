@@ -1,5 +1,6 @@
 '''Matrix creator'''
 from numpy import zeros
+from os import getcwd, path, makedirs
 
 def matrix(lines, rows, link_key, name):
     try:
@@ -13,6 +14,9 @@ def matrix(lines, rows, link_key, name):
 
 def write_csv(lines, rows, matrix, file_name):
     # Write csv file
+    folder_name = F"{getcwd()}/matrix"
+    if not path.exists(folder_name): makedirs(folder_name)
+
     f = open(file_name, 'w')
     f.write(" ")
     for row in rows:

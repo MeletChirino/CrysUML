@@ -1,9 +1,10 @@
 """ main package from crysuml"""
 from .functions import draw_plantuml, check_kwargs, link
+from os import path, makedirs
 
 class Actor():
     def __init__(self, **kwargs):
-        """ 
+        """
         keywords:
             name: Name of the actor
             type: type of the actor human, composant, cloud
@@ -76,6 +77,7 @@ class Diagram():
     def create(self):
         #create use case diagram with plantuml
         file_name = "docs/diagrams/use_case_diagram.iuml"
+        if not path.exists("docs/diagrams"): makedirs("docs/diagrams")
         f = open(file_name, "w")
         f.write("@startuml\nleft to right direction\n")
         f.close()

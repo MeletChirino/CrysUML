@@ -2,6 +2,7 @@
 import gc
 import plantuml
 from .matrix import matrix
+from os import system, path, makedirs, getcwd
 
 def create_md(**kwargs):
     ''' This function writes a mark down file
@@ -11,7 +12,9 @@ def create_md(**kwargs):
         - instance_list
         - footer
     '''
-    file_name = F"docs/{kwargs['name']}.md"
+    folder_name = F"{getcwd()}/docs"
+    file_name = F"{folder_name}{kwargs['name']}.md"
+    if not path.exists(folder_name): makedirs(folder_name)
     f = open(file_name, 'w')
     f.write(F"{kwargs['name']} markdown File!\n")
 
@@ -96,6 +99,13 @@ def draw_plantuml(file_name):
         return diagram
     except Exception as e:
         print(F"Looks like a pantuml Error:\n{e}\nIf you didn't get it you can try to compile the file in plantuml web compiler")
+        print("Trying offline")
+        res = system(F"plantuml {file_name}")
+        if not res == 0:
+            # aqui intento compilar la imagen offline pero puede que tenga errores
+            raise ValueError(F'{res} Plantuml error ')
+        else:
+            print("You can see your error on the pic")
 
 def get_list(class_name):
     '''This function gets a list of all instances of a single class.'''
