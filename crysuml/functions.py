@@ -13,7 +13,7 @@ def create_md(**kwargs):
         - footer
     '''
     folder_name = F"{getcwd()}/docs"
-    file_name = F"{folder_name}{kwargs['name']}.md"
+    file_name = F"{folder_name}/{kwargs['name']}.md"
     if not path.exists(folder_name): makedirs(folder_name)
     f = open(file_name, 'w')
     f.write(F"{kwargs['name']} markdown File!\n")
