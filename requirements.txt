@@ -1,0 +1,6 @@
+httplib2==0.20.4
+plantuml==0.3.0
+pygame==2.1.2
+pyparsing==3.0.7
+six==1.16.0
+watchdog==2.1.6
