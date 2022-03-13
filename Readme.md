@@ -7,5 +7,11 @@ The result are a bunch of md files that show all details of your project. For di
 
 So far you can do Exigences, UseCase diagrams, Sequence diagrams, logic and physic architecture of your system. Im working in a script that can organize activities the scrum way with epics, user histories and milestones within a gantt diagram. Later I would like to upload this activities automatically to github.
 
-[Installing](https://github.com/MeletChirino/CrysUML/wiki/Install) and [using](https://github.com/MeletChirino/CrysUML/wiki/Use) instrucctions are in the [wikis](https://github.com/MeletChirino/CrysUML/wiki/Home) page of this repo (if everything goes fine I will upload it to PyPi). If you have any problem don't mind to contact me.
+## Installing
 
+Please paste next instructions for installing the repo
+```bash
+git clone https://github.com/MeletChirino/CrysUML.git
+cd CrysUML
+bash setup.sh
+```
