@@ -1,6 +1,11 @@
+cowsay==4.0
+distlib==0.3.4
+filelock==3.6.0
 httplib2==0.20.4
 plantuml==0.3.0
+platformdirs==2.5.1
 pygame==2.1.2
 pyparsing==3.0.7
 six==1.16.0
+virtualenv==20.13.3
 watchdog==2.1.6
